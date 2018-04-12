@@ -2,7 +2,7 @@
 
 (  // STEP 1: LOAD BUFFERS, CHANGE PATHNAME IF NECESSARY
 ~audioSources = Array.new;
-~folder = PathName.new("C:/Users/johngoestouni/Desktop/NRT/SuperCollider/MY PROJECT CODE/AUDIO SOURCE FILES");
+~folder = PathName.new("C:/Users/johngoestouni/Desktop/SuperCollider/MY PROJECT CODE/AUDIO SOURCE FILES");
 ~folder.entries.do({
 	arg path;
 	~audioSources = ~audioSources.add(Buffer.read(s, path.fullPath))
