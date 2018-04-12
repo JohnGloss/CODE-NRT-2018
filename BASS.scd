@@ -16,13 +16,13 @@ SynthDef.new( \bassLong, {
 	Splay.kr(Out.ar(0, filteredWave), spread:0.9);
 }).add;
 
-~filterEnv = PatternProxy(2000); // init with default 2000
+~filterEnvStart = PatternProxy(2000); // init with default 2000
 (
 ~playBassLongF = Pbind(
 	\instrument, \bassLong,
 	\dur, 8,
 	\squareFreq, Pseq([29.midicps, 28.midicps], inf),   // Notes F and E
-	\filterEnvStart, ~filterEnv
+	\filterEnvStart, ~filterEnvStart
 );
 )
 
