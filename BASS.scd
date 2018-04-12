@@ -7,13 +7,21 @@ SynthDef.new( \bassLong, {
 		[0.05, 4],
 		[1, 5]),
 	    doneAction:2);
+	// two stereo square waves, 2nd is one octave higher
 	var squareWave = {Pulse.ar(
-		freq: squareFreq + rand(0.02)-0.1,
-		width: 0.5 + rand(0.2)-1)
+		freq: squareFreq + rand(0.02)-0.01,
+		width: 0.5 + rand(0.2)-0.1)
 	}!2;
+	var squareWave2 = {Pulse.ar(
+		freq: (squareFreq * 2) + rand(0.2)-0.1,
+		width: 0.5 + rand(0.4)-0.2)
+	}!2;
+	// both waves are filtered, 2nd is also gently pulsed
 	var filterEnv = XLine.kr(filterEnvStart,200,1);
-	var filteredWave = LPF.ar(squareWave, filterEnv) * env * amp;
-	Splay.kr(Out.ar(0, filteredWave), spread:0.9);
+	var filteredWave1 = LPF.ar(squareWave, filterEnv);
+	var filteredWave2 = LPF.ar(squareWave2, filterEnv, mul: LFPar.kr(freq:1,iphase:0));
+	var finalWave = (filteredWave1*0.7) + (filteredWave2*0.3) * env * amp;
+	Splay.kr(Out.ar(0, finalWave), spread:0.9);
 }).add;
 
 ~filterEnvStart = PatternProxy(2000); // init with default 2000
