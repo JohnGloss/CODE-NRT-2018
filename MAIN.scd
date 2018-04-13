@@ -18,18 +18,25 @@ t = TempoClock(120/60).permanent_(true);
 ~hiHatC = ~playHiHatClosed.asEventStreamPlayer;
 ~hiHatO = ~playHiHatOpen.asEventStreamPlayer;
 ~bassL = ~playBassLongF.asEventStreamPlayer;
+~organ = ~playOrgan.asEventStreamPlayer;
 )
 
 // STEP 4: HANDLE INSTRUMENTS AS DESIRED
 
 // HI HATS
-(~hiHatC.play(t, quant:4); ~hiHatO.play(t, quant:4);) // START
+(~hiHatC.play(t, quant:4); ~hiHatO.play(t, quant:8);) // START
 (~hiHatC.pause; ~hiHatO.pause;) // PAUSE
 (~hiHatC.resume; ~hiHatO.resume;) // RESUME
 ~verbMix.source = 0.4;
 
 // BASS
-~bassL.play(t, quant:4); // START
+~bassL.play(t, quant:8); // START
 ~bassL.pause; // PAUSE
 ~bassL.resume;  // RESUME
 ~filterEnvStart.source = 2000;
+
+// ORGAN
+~organ.play(t, quant:8); // START
+~organ.pause; // PAUSE
+~organ.resume;  // RESUME
+
