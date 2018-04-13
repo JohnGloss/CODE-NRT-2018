@@ -20,7 +20,7 @@ t = TempoClock(120/60).permanent_(true);
 ~hiHatC = ~playHiHatClosed.asEventStreamPlayer;
 ~hiHatO = ~playHiHatOpen.asEventStreamPlayer;
 ~bassDrum = ~playBassDrum.asEventStreamPlayer;
-~bassL = ~playBassLongF.asEventStreamPlayer;
+~bass = ~playBass.asEventStreamPlayer;
 ~organ = ~playOrgan.asEventStreamPlayer;
 )
 
@@ -29,7 +29,7 @@ t = TempoClock(120/60).permanent_(true);
 // start instruments in sync
 (
 ~hiHatC.play(t, quant:4); ~hiHatO.play(t, quant:8); ~bassDrum.play(t, quant:4);
-~bassL.play(t, quant:8);
+~bass.play(t, quant:8);
 ~organ.play(t, quant:8);
 )
 

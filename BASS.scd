@@ -1,6 +1,6 @@
 ( // - start of code
 
-SynthDef.new( \bassLong, {
+SynthDef.new( \bass, {
 	arg amp=~masterAmplitude, inputFreq=1, filterEnvStart = 2000;
 	var env = EnvGen.ar(Env(
 		[0, 1, 0],
@@ -26,8 +26,8 @@ SynthDef.new( \bassLong, {
 
 ~filterEnvStart = PatternProxy(2000); // init with default 2000
 (
-~playBassLongF = Pbind(
-	\instrument, \bassLong,
+~playBass = Pbind(
+	\instrument, \bass,
 	\dur, 8,
 	\inputFreq, Pseq([29.midicps, 28.midicps], inf),   // Notes F and E
 	\filterEnvStart, ~filterEnvStart
