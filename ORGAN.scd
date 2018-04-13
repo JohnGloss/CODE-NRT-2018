@@ -2,7 +2,7 @@
 
 SynthDef.new(\organ, {
 	arg amp=~masterAmplitude, inputFreq=440, filterEnvStart=10000;
-	var envSize=0.5;
+	var envSize=0.2;
 	var env = EnvGen.ar(Env(
 		[0, 1, 0],
 		[0.05, envSize],
@@ -28,16 +28,14 @@ SynthDef.new(\organ, {
 
 ~playOrgan=Pbind(
 	\instrument, \organ,
-	\dur, Pshuf([1,1,1,1,1,0.5,0.5,0.5,0.5,0.5,0.5], inf),
-	\inputFreq, Pseq([Pn(41.midicps, 11), Pn(40.midicps, 11)], inf),   // Notes F and E
+	\amp, Pseq(([10,8,4,4]/100), inf),
+	\dur, Pseq([0.5,1,0.25,0.25], inf),
+	\inputFreq, Pseq([Pn(41.midicps, 16), Pn(40.midicps, 16)], inf), // Notes F and E
 );
 
 ) // - end of code
 
 
-// x=Pshuf([1,1,1,1,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5],inf);
-// y=x.asStream;
-// y.next.postln;
 
 
 
