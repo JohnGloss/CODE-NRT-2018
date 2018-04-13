@@ -27,11 +27,10 @@ SynthDef.new(\organ, {
 
 ~playOrgan=Pbind(
 	\instrument, \organ,
-	\dur,
-	\inputFreq, Pseq([41.midicps, 40.midicps], inf),   // Notes F and E
+	\dur, Pseq([1,1,1,1,1,1,1,1], inf),
+	\inputFreq, Pseq([Pn(41.midicps, 8), Pn(40.midicps, 8)], inf),   // Notes F and E
 );
 
-~organSeq1 =  Pseq([ Pseq([0,\,0,0], 3), Pseq([0,0,0,0], 1)], inf);
 
 ) // - end of code
 

@@ -23,20 +23,19 @@ t = TempoClock(120/60).permanent_(true);
 
 // STEP 4: HANDLE INSTRUMENTS AS DESIRED
 
+// start instruments in sync
+(
+~hiHatC.play(t, quant:4); ~hiHatO.play(t, quant:8);
+~bassL.play(t, quant:8);
+~organ.play(t, quant:8);
+)
+
 // HI HATS
-(~hiHatC.play(t, quant:4); ~hiHatO.play(t, quant:8);) // START
-(~hiHatC.pause; ~hiHatO.pause;) // PAUSE
-(~hiHatC.resume; ~hiHatO.resume;) // RESUME
 ~verbMix.source = 0.4;
 
 // BASS
-~bassL.play(t, quant:8); // START
-~bassL.pause; // PAUSE
-~bassL.resume;  // RESUME
 ~filterEnvStart.source = 2000;
 
 // ORGAN
-~organ.play(t, quant:8); // START
-~organ.pause; // PAUSE
-~organ.resume;  // RESUME
+
 
