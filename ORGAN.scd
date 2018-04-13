@@ -27,12 +27,16 @@ SynthDef.new(\organ, {
 
 ~playOrgan=Pbind(
 	\instrument, \organ,
-	\dur, Pseq([1,1,1,1,1,1,1,1], inf),
-	\inputFreq, Pseq([Pn(41.midicps, 8), Pn(40.midicps, 8)], inf),   // Notes F and E
+	\dur, Pshuf([1,1,1,1,1,0.5,0.5,0.5,0.5,0.5,0.5], inf),
+	\inputFreq, Pseq([Pn(41.midicps, 11), Pn(40.midicps, 11)], inf),   // Notes F and E
 );
 
-
 ) // - end of code
+
+
+// x=Pshuf([1,1,1,1,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5],inf);
+// y=x.asStream;
+// y.next.postln;
 
 
 
