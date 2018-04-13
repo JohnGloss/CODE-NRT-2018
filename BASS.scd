@@ -17,7 +17,7 @@ SynthDef.new( \bassLong, {
 		width: 0.5 + rand(0.4)-0.2)
 	}!2;
 	// both waves are filtered, 2nd is also gently pulsed
-	var filterEnv = XLine.kr(filterEnvStart,200,1);
+	var filterEnv = XLine.kr(filterEnvStart,200,0.5);
 	var filteredWave1 = LPF.ar(squareWave, filterEnv);
 	var filteredWave2 = LPF.ar(squareWave2, filterEnv, mul: LFPar.kr(freq:1,iphase:0));
 	var finalWave = (filteredWave1*0.7) + (filteredWave2*0.3) * env * amp;

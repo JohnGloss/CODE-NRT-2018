@@ -32,4 +32,4 @@ t = TempoClock(120/60).permanent_(true);
 ~bassL.play(t, quant:4); // START
 ~bassL.pause; // PAUSE
 ~bassL.resume;  // RESUME
-~filterEnvStart.source = 777;
+~filterEnvStart.source = 2000;
