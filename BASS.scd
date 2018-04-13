@@ -1,7 +1,7 @@
 ( // - start of code
 
 SynthDef.new( \bassLong, {
-	arg amp=0.01, squareFreq=440, filterEnvStart = 2000;
+	arg amp=0.01, inputFreq=1, filterEnvStart = 2000;
 	var env = EnvGen.ar(Env(
 		[0, 1, 0],
 		[0.05, 4],
@@ -9,11 +9,11 @@ SynthDef.new( \bassLong, {
 	    doneAction:2);
 	// two stereo square waves, 2nd is one octave higher
 	var squareWave = {Pulse.ar(
-		freq: squareFreq + rand(0.02)-0.01,
+		freq: inputFreq + rand(0.02)-0.01,
 		width: 0.5 + rand(0.2)-0.1)
 	}!2;
 	var squareWave2 = {Pulse.ar(
-		freq: (squareFreq * 2) + rand(0.2)-0.1,
+		freq: (inputFreq * 2) + rand(0.2)-0.1,
 		width: 0.5 + rand(0.4)-0.2)
 	}!2;
 	// both waves are filtered, 2nd is also gently pulsed
@@ -29,7 +29,7 @@ SynthDef.new( \bassLong, {
 ~playBassLongF = Pbind(
 	\instrument, \bassLong,
 	\dur, 8,
-	\squareFreq, Pseq([29.midicps, 28.midicps], inf),   // Notes F and E
+	\inputFreq, Pseq([29.midicps, 28.midicps], inf),   // Notes F and E
 	\filterEnvStart, ~filterEnvStart
 );
 )
