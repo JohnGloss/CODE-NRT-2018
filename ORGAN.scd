@@ -6,16 +6,16 @@ SynthDef.new(\organ, {
 	var env = EnvGen.ar(Env(
 		[0, 1, 0],
 		[0.05, envSize],
-		[1, 5]),
+		[1, 22]),
 	    doneAction:2);
 	// Two variable-duty saw waves
 	var sawWave = {VarSaw.ar(
 		freq: (inputFreq * 0.99) + rand(0.02)-0.01,
-		width: 0.5 + rand(0.4)-0.2)
+		width: 0.2 + rand(0.4)-0.2)
 	}!2;
 	var sawWave2 = {VarSaw.ar(
 		freq: (inputFreq * 1.01) + rand(0.2)-0.1,
-		width: 0.5 + rand(0.3)-0.15)
+		width: 0.8 + rand(0.3)-0.15)
 	}!2;
 	// both waves are filtered
 	var filterEnv = XLine.kr(filterEnvStart,20,envSize);
