@@ -1,7 +1,7 @@
 ( // - start of code
 
 SynthDef.new( \bassLong, {
-	arg amp=0.01, inputFreq=1, filterEnvStart = 2000;
+	arg amp=~masterAmplitude, inputFreq=1, filterEnvStart = 2000;
 	var env = EnvGen.ar(Env(
 		[0, 1, 0],
 		[0.05, 4],

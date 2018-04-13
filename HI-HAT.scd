@@ -13,7 +13,7 @@
 
 // SYNTH DEFS
 SynthDef.new( \hiHatClosed, {
-	arg buf=0, amp=0.4, verbMix=0.3, verbRoom=0.2;
+	arg buf=0, amp=~masterAmplitude, verbMix=0.3, verbRoom=0.2;
 	var env = EnvGen.ar(Env.perc, doneAction:2);
 	var sig = PlayBuf.ar(2, buf) * env * amp;
 	var verby = FreeVerb2.ar(sig[0], sig[1], mix:verbMix, room:verbRoom, damp:1);
@@ -21,7 +21,7 @@ SynthDef.new( \hiHatClosed, {
 }).add;
 
 SynthDef.new( \hiHatOpen, {
-	arg buf=0, amp=0.4, verbMix=0.3, verbRoom=0.3;
+	arg buf=0, amp=~masterAmplitude, verbMix=0.3, verbRoom=0.3;
 	var env = EnvGen.ar(Env([1,0],[0.25]), doneAction:2);
 	var sig = PlayBuf.ar(2, buf) * env * amp;
 	var verby = FreeVerb2.ar(sig[0], sig[1], mix:verbMix, room:verbRoom, damp:1);

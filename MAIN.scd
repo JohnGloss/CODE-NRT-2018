@@ -14,6 +14,7 @@
 // STEP 2: (a) OPEN EVERY FILE (b) CLICK IN FILE (c) EVAL(ctrl-enter)
 
 ( // STEP 3: INITIALIZE SYSTEM
+~masterAmplitude = 0.4;
 t = TempoClock(120/60).permanent_(true);
 ~hiHatC = ~playHiHatClosed.asEventStreamPlayer;
 ~hiHatO = ~playHiHatOpen.asEventStreamPlayer;

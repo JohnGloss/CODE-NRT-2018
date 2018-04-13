@@ -1,11 +1,12 @@
 ( // - start of code
 
 SynthDef.new(\organ, {
-	arg amp=0.01, inputFreq=440, filterEnvStart=5000;
+	arg amp=~masterAmplitude, inputFreq=440, filterEnvStart=10000;
+	var envSize=0.5;
 	var env = EnvGen.ar(Env(
 		[0, 1, 0],
-		[0.05, 1],
-		[1, 1]),
+		[0.05, envSize],
+		[1, 5]),
 	    doneAction:2);
 	// Two variable-duty saw waves
 	var sawWave = {VarSaw.ar(
@@ -17,7 +18,7 @@ SynthDef.new(\organ, {
 		width: 0.5 + rand(0.3)-0.15)
 	}!2;
 	// both waves are filtered
-	var filterEnv = XLine.kr(filterEnvStart,20,0.75);
+	var filterEnv = XLine.kr(filterEnvStart,20,envSize);
 	var filteredWave1 = LPF.ar(sawWave, filterEnv);
 	var filteredWave2 = LPF.ar(sawWave2, filterEnv);
 	var finalWave = (filteredWave1*0.5) + (filteredWave2*0.5) * env * amp;
