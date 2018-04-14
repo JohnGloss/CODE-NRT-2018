@@ -33,7 +33,7 @@ t = TempoClock(120/60).permanent_(true);
 ~bass.play(t, quant:8);
 ~bassFilterEnvStart.source = 1; //remove one-half of BASS sound from mix
 ~organ.play(t, quant:8);
-~organFilterEnvStart.source = 1;
+~organFilterEnvStart.source = 1; // start with filter completely down
 )
 
 // BASS - bring full bass sound into mix
@@ -46,7 +46,5 @@ t = TempoClock(120/60).permanent_(true);
 ~verbMix.source = Prand([0.1,0.2,0.3,0.4], inf);
 
 
-
-// ORGAN
 
 
