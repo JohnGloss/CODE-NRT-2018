@@ -2,27 +2,27 @@
 
 SynthDef.new(\organ, {
 	arg amp=~masterAmplitude, inputFreq=440, filterEnvStart=10000;
-	var envSize=0.2;
+	var envSize=0.4;
 	var env = EnvGen.ar(Env(
 		[0, 1, 0],
 		[0.05, envSize],
-		[1, 22]),
+		[-200, 5]),
 	    doneAction:2);
 	// Two variable-duty saw waves
 	var sawWave = {VarSaw.ar(
 		freq: (inputFreq * 0.99) + rand(0.02)-0.01,
-		width: 0.2 + rand(0.4)-0.2)
+		width: 0.5 + rand(0.4)-0.2)
 	}!2;
 	var sawWave2 = {VarSaw.ar(
 		freq: (inputFreq * 1.01) + rand(0.2)-0.1,
-		width: 0.8 + rand(0.3)-0.15)
+		width: 0.5 + rand(0.3)-0.15)
 	}!2;
 	// both waves are filtered
-	var filterEnv = XLine.kr(filterEnvStart,20,envSize);
+	var filterEnv = XLine.kr(filterEnvStart,200,envSize);
 	var filteredWave1 = LPF.ar(sawWave, filterEnv);
 	var filteredWave2 = LPF.ar(sawWave2, filterEnv);
 	var finalWave = (filteredWave1*0.5) + (filteredWave2*0.5) * env * amp;
-	Splay.kr(Out.ar(0, finalWave), spread:0.9);
+	Splay.kr(Out.ar(0, finalWave), spread:1);
 
 }).add;
 
