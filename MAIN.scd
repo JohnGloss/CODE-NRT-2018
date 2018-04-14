@@ -26,18 +26,21 @@ t = TempoClock(120/60).permanent_(true);
 
 // STEP 4: HANDLE INSTRUMENTS AS DESIRED
 
-// start instruments in sync
+// START INSTRUMENTS
 (
 ~hiHatC.play(t, quant:4); ~hiHatO.play(t, quant:8); ~bassDrum.play(t, quant:8);
 ~bass.play(t, quant:8);
-~organ.play(t, quant:8);
+~bassFilterEnvStart.source = 1; //remove one-half of BASS sound from mix
+//~organ.play(t, quant:8);
 )
+
+// BASS - bring full bass sound into mix
+~bassFilterEnvStart.source = 2000;
 
 // HI HATS
 ~verbMix.source = 0.4;
 
-// BASS
-~bassFilterEnvStart.source = 2000;
+
 
 // ORGAN
 
