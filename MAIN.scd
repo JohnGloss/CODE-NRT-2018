@@ -37,7 +37,7 @@ t = TempoClock(120/60).permanent_(true);
 ~verbMix.source = 0.4;
 
 // BASS
-~filterEnvStart.source = 2000;
+~bassFilterEnvStart.source = 2000;
 
 // ORGAN
 
