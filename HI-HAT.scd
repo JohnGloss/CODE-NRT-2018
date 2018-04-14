@@ -31,7 +31,7 @@ SynthDef.new( \hiHatOpen, {
 
 SynthDef.new( \bassDrum, {
 	arg buf=0, amp=(~masterAmplitude+0.5), verbMix=0.1, verbRoom=0.1;
-	var env = EnvGen.ar(Env.perc, doneAction:2);
+	var env = EnvGen.ar(Env([2,0],[1]), doneAction:2);
 	var sig = PlayBuf.ar(2, buf) * env * amp;
 	var verby = FreeVerb2.ar(sig[0], sig[1], mix:verbMix, room:verbRoom, damp:1);
 	Out.ar(0, verby);
