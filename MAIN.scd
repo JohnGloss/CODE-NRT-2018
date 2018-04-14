@@ -30,10 +30,10 @@ t = TempoClock(120/60).permanent_(true);
 (
 ~hiHatC.play(t, quant:4); ~hiHatO.play(t, quant:8); ~bassDrum.play(t, quant:8);
 ~verbMix.source = 0.1;
-/*~bass.play(t, quant:8);
+~bass.play(t, quant:8);
 ~bassFilterEnvStart.source = 1; //remove one-half of BASS sound from mix
 ~organ.play(t, quant:8);
-~organFilterEnvStart.source = 1;*/
+~organFilterEnvStart.source = 1;
 )
 
 // BASS - bring full bass sound into mix
@@ -42,8 +42,8 @@ t = TempoClock(120/60).permanent_(true);
 // ORGAN - bring full bass sound into mix
 ~organFilterEnvStart.source = 10000;
 
-// HI HATS
-~verbMix.source = Prand([0.1,0.2,0.3,0.4,0.5], inf);
+// HI HATS - add random reverb to closed HiHats
+~verbMix.source = Prand([0.1,0.2,0.3,0.4], inf);
 
 
 
