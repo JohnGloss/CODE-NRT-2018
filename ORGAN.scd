@@ -1,7 +1,7 @@
 ( // - start of code
 
 SynthDef.new(\organ, {
-	arg amp=~masterAmplitude, inputFreq=440, filterEnvStart=10000;
+	arg amp=~masterAmplitude, inputFreq=440, organFilterEnvStart=10000;
 	var envSize=0.4;
 	var env = EnvGen.ar(Env(
 		[0, 1, 0],
@@ -18,7 +18,7 @@ SynthDef.new(\organ, {
 		width: 0.5 + rand(0.3)-0.15)
 	}!2;
 	// both waves are filtered
-	var filterEnv = XLine.kr(filterEnvStart,200,envSize);
+	var filterEnv = XLine.kr(organFilterEnvStart,200,envSize);
 	var filteredWave1 = LPF.ar(sawWave, filterEnv);
 	var filteredWave2 = LPF.ar(sawWave2, filterEnv);
 	var finalWave = (filteredWave1*0.5) + (filteredWave2*0.5) * env * amp;
@@ -26,11 +26,14 @@ SynthDef.new(\organ, {
 
 }).add;
 
+~organFilterEnvStart = PatternProxy(10000);
+
 ~playOrgan=Pbind(
 	\instrument, \organ,
 	\amp, Pseq(([10,8,4,4]/100), inf),
 	\dur, Pseq([0.5,1,0.25,0.25], inf),
 	\inputFreq, Pseq([Pn(41.midicps, 16), Pn(40.midicps, 16)], inf), // Notes F and E
+	\organFilterEnvStart, ~organFilterEnvStart
 );
 
 ) // - end of code
