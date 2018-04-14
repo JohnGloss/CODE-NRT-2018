@@ -22,6 +22,7 @@ t = TempoClock(120/60).permanent_(true);
 ~bassDrum = ~playBassDrum.asEventStreamPlayer;
 ~bass = ~playBass.asEventStreamPlayer;
 ~organ = ~playOrgan.asEventStreamPlayer;
+~chords = ~playChords.asEventStreamPlayer;
 )
 
 // STEP 4: HANDLE INSTRUMENTS AS DESIRED
@@ -33,6 +34,7 @@ t = TempoClock(120/60).permanent_(true);
 ~bassFilterEnvStart.source = 1; // start with attack part of Bass off
 ~organ.play(t, quant:8);
 ~organFilterEnvStart.source = 1; // start with filter completely down
+~chords.play(t, quant:8);
 )
 
 // MODIFY INSTRUMENTS
