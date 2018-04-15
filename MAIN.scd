@@ -1,8 +1,9 @@
 // MAIN CONTROLLER
 
 (  // STEP 1: LOAD BUFFERS, CHANGE PATHNAME IF NECESSARY
-~audioSources = Array.new;
+~audioSources = Array.new(50);
 ~folder = PathName.new("C:/Users/johngoestouni/Desktop/SuperCollider/MY PROJECT CODE/AUDIO SOURCE FILES");
+~folder.entries.size.postln; ~folder.entries.postln;
 ~folder.entries.do({
 	arg path;
 	~audioSources = ~audioSources.add(Buffer.read(s, path.fullPath))
@@ -10,11 +11,20 @@
 ~hiHatClosedBuffer = ~audioSources[0];
 ~hiHatOpenBuffer = ~audioSources[1];
 ~bassDrumBuffer = ~audioSources[2];
+~fluteE = ~audioSources[3];
+~fluteF = ~audioSources[4];
+~fluteG = ~audioSources[5];
+~fluteA = ~audioSources[6];
+~fluteB = ~audioSources[7];
+~fluteC = ~audioSources[8];
+~fluteD = ~audioSources[9];
+~fluteE_high = ~audioSources[10];
+~fluteF_high = ~audioSources[11];
 )
 
 // STEP 2: (a) OPEN EVERY FILE (b) CLICK IN FILE (c) EVAL(ctrl-enter)
 
-( // STEP 3: INITIALIZE SYSTEM
+( // STEP 3: INITIALIZE SYSTEM (system clock, streams)
 ~masterAmplitude = 1;
 t = TempoClock(120/60).permanent_(true);
 ~hiHatC = ~playHiHatClosed.asEventStreamPlayer;
