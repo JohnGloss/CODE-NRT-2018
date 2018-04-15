@@ -12,7 +12,7 @@ SynthDef(\flute, { arg fluteAmpl=0, bus = 0, inputFreq = 0;
 	}!2;
 	var filterEnv = XLine.kr(3000,200,envSize);
 	var filteredWave1 = LPF.ar(wave1, filterEnv);
-	var finalWave = filteredWave1 * env * 0.5;
+	var finalWave = filteredWave1 * env * 0.4;
 	Splay.kr(Out.ar(0, finalWave), spread:1);
 }).add;
 
