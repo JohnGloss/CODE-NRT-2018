@@ -7,7 +7,9 @@ SynthDef(\flute, { arg fluteAmpl=0, bus = 0, inputFreq = 0;
 		[0.05, envSize],
 		[1, 44]),
 	    doneAction:2);
-	var wave1 = {LFTri.ar( freq: inputFreq + rand(0.02)-0.01) }!2;
+	var wave1 = {
+		LFTri.ar( freq: inputFreq + rand(0.02)-0.01)
+	}!2;
 	var filterEnv = XLine.kr(3000,200,envSize);
 	var filteredWave1 = LPF.ar(wave1, filterEnv);
 	var finalWave = filteredWave1 * env * 0.5;
