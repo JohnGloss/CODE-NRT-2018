@@ -12,14 +12,6 @@
 ~hiHatOpenBuffer = ~audioSources[1];
 ~bassDrumBuffer = ~audioSources[2];
 ~fluteE = ~audioSources[3];
-~fluteF = ~audioSources[4];
-~fluteG = ~audioSources[5];
-~fluteA = ~audioSources[6];
-~fluteB = ~audioSources[7];
-~fluteC = ~audioSources[8];
-~fluteD = ~audioSources[9];
-~fluteE_high = ~audioSources[10];
-~fluteF_high = ~audioSources[11];
 )
 
 // STEP 2: (a) OPEN EVERY FILE (b) CLICK IN FILE (c) EVAL(ctrl-enter)
@@ -33,6 +25,7 @@ t = TempoClock(120/60).permanent_(true);
 ~bass = ~playBass.asEventStreamPlayer;
 ~organ = ~playOrgan.asEventStreamPlayer;
 ~chords = ~playChords.asEventStreamPlayer;
+~flute = ~playFlute.asEventStreamPlayer;
 )
 
 // STEP 4: HANDLE INSTRUMENTS AS DESIRED
@@ -46,6 +39,7 @@ t = TempoClock(120/60).permanent_(true);
 ~organFilterEnvStart.source = 1; // start with filter completely down
 ~chords.play(t, quant:8);
 ~chordsAmpl.source = 0.0; // start with volume off
+~flute.play(t, quant:8);
 )
 
 // MODIFY INSTRUMENTS
