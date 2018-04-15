@@ -11,7 +11,6 @@
 ~hiHatClosedBuffer = ~audioSources[0];
 ~hiHatOpenBuffer = ~audioSources[1];
 ~bassDrumBuffer = ~audioSources[2];
-~fluteE = ~audioSources[3];
 )
 
 // STEP 2: (a) OPEN EVERY FILE (b) CLICK IN FILE (c) EVAL(ctrl-enter)
@@ -40,15 +39,15 @@ t = TempoClock(120/60).permanent_(true);
 ~chords.play(t, quant:8);
 ~chordsAmpl.source = 0.0; // start with volume off
 ~flute.play(t, quant:8);
+~fluteAmpl.source = 0.0; // start with volume off
 )
 
 // MODIFY INSTRUMENTS
 ~bassFilterEnvStart.source = 2000;   // BASS - bring bass attack into mix
 ~organFilterEnvStart.source = 10000; // ORGAN - bring rest of sound into mix
-~chordsAmpl.source = 0.1;           // CHORDS - bring full sound into mix
+~chordsAmpl.source = 0.1;            // CHORDS - bring full sound into mix
+~fluteAmpl.source = 0.1;             // FLUTE - bring full sound into mix
 ~verbMix.source = Prand([0.1,0.2,0.3], inf);// HI HATS - add random reverb to closed HiHats
-
-
 
 // ENDING (not fully implemented yet)
 (

@@ -31,7 +31,6 @@ SynthDef.new(\chords, {
 		Pseq([72,71]),
 		Pseq([76,74]),
 	], inf).midicps,
-	\chordsAmpl, ~chordsAmpl
 );
 
 ) // - end of code
