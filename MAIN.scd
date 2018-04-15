@@ -2,7 +2,7 @@
 
 (  // STEP 1: LOAD BUFFERS, CHANGE PATHNAME IF NECESSARY
 ~audioSources = Array.new(50);
-~folder = PathName.new("C:/Users/johngoestouni/Desktop/SuperCollider/MY PROJECT CODE/AUDIO SOURCE FILES");
+~folder = PathName.new("C:/Users/johngoestouni/Desktop/SuperCollider/MY PROJECT CODE/CODE-NRT-2018/AUDIO SOURCE FILES");
 ~folder.entries.size.postln; ~folder.entries.postln;
 ~folder.entries.do({
 	arg path;
@@ -53,6 +53,21 @@ t = TempoClock(120/60).permanent_(true);
 ~organFilterEnvStart.source = 10000; // ORGAN - bring rest of sound into mix
 ~chordsAmpl.source = 0.1;           // CHORDS - bring full sound into mix
 ~verbMix.source = Prand([0.1,0.2,0.3], inf);// HI HATS - add random reverb to closed HiHats
+
+
+
+// ENDING (not fully implemented yet)
+(
+t = Task({
+	forBy ( 0.1, 1, 0.1, { arg i;
+            ~verbMix.source = i;
+            1.wait;
+        });
+}).play;
+)
+
+
+
 
 
 
