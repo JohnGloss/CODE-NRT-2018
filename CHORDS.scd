@@ -1,5 +1,5 @@
-( // - start of code
-
+// CHORDS
+(
 SynthDef.new(\chords, {
 	arg chordsAmpl=0, freq=440;
 	var envSize=4;
@@ -19,11 +19,9 @@ SynthDef.new(\chords, {
 	Splay.kr(Out.ar(0, verby), spread:1);
 }).add;
 
-~chordsAmpl = PatternProxy(0.0);
-
-~playChords=Pbind(
+~chords=Pbindef(\chordPattern,
 	\instrument, \chords,
-	\chordsAmpl, ~chordsAmpl,
+	\chordsAmpl, 0,
 	\dur, 8,
 	\freq, Ptuple([ // Fmaj7 and Em7 chords
 		Pseq([65,64]),
@@ -32,5 +30,4 @@ SynthDef.new(\chords, {
 		Pseq([76,74]),
 	], inf).midicps,
 );
-
-) // - end of code
+)

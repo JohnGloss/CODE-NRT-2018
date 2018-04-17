@@ -1,7 +1,7 @@
-( // - start of code
-
-SynthDef.new( \bass, {
-	arg amp=~masterAmplitude, inputFreq=1, bassFilterEnvStart = 2000;
+// BASS
+(
+SynthDef.new( \bassSynth, {
+	arg amp=~masterAmplitude, dur=0, inputFreq=1, filterStart = 1;
 	var env = EnvGen.ar(Env(
 		[0, 1, 0],
 		[0.05, 4],
@@ -17,36 +17,20 @@ SynthDef.new( \bass, {
 		width: 0.5 + rand(0.4)-0.2)
 	}!2;
 	// both waves are filtered, 2nd is also gently pulsed
-	var filterEnv = XLine.kr(bassFilterEnvStart,200,0.5);
+	var filterEnv = XLine.kr(filterStart,200,0.5);
 	var filteredWave1 = LPF.ar(squareWave, filterEnv);
 	var filteredWave2 = LPF.ar(squareWave2, filterEnv, mul: LFPar.kr(freq:1,iphase:0));
 	var finalWave = (filteredWave1*0.7) + (filteredWave2*0.3) * env * amp;
 	Splay.kr(Out.ar(0, finalWave), spread:0.9);
 }).add;
 
-~bassFilterEnvStart = PatternProxy(2000); // init with default 2000
-(
-~playBass = Pbind(
-	\instrument, \bass,
-	\dur, 8,
-	\inputFreq, Pseq([29.midicps, 28.midicps], inf),   // Notes F and E
-	\bassFilterEnvStart, ~bassFilterEnvStart
+~bass=Pbindef(\bassPattern,
+	\instrument,\bassSynth,
+	\dur,8,
+	\inputFreq,Pseq([29.midicps, 28.midicps], inf),
+	\filterStart, 1
 );
 )
-
-
-) // - end of code
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -1,66 +1,38 @@
 // MAIN CONTROLLER
 
-(  // STEP 1: LOAD BUFFERS, CHANGE PATHNAME IF NECESSARY
-~audioSources = Array.new(50);
-~folder = PathName.new("C:/Users/johngoestouni/Desktop/SuperCollider/MY PROJECT CODE/CODE-NRT-2018/AUDIO SOURCE FILES");
-~folder.entries.size.postln; ~folder.entries.postln;
-~folder.entries.do({
-	arg path;
-	~audioSources = ~audioSources.add(Buffer.read(s, path.fullPath))
-});
-~hiHatClosedBuffer = ~audioSources[0];
-~hiHatOpenBuffer = ~audioSources[1];
-~bassDrumBuffer = ~audioSources[2];
-)
+Execution steps:
+1.  Do Initialize System (below)
+2.  Eval all files except MAIN (this file)
+3.  In this file (MAIN), (a) Start the clock, (b) Start Instruments, (c) Modify Instruments
+-- if you need to stop the instruments, start the clock before starting the instruments
 
-// STEP 2: (a) OPEN EVERY FILE (b) CLICK IN FILE (c) EVAL(ctrl-enter)
-
-( // STEP 3: INITIALIZE SYSTEM (system clock, streams)
+(// INITIALIZE SYSTEM
 ~masterAmplitude = 1;
-t = TempoClock(120/60).permanent_(true);
-~hiHatC = ~playHiHatClosed.asEventStreamPlayer;
-~hiHatO = ~playHiHatOpen.asEventStreamPlayer;
-~bassDrum = ~playBassDrum.asEventStreamPlayer;
-~bass = ~playBass.asEventStreamPlayer;
-~organ = ~playOrgan.asEventStreamPlayer;
-~chords = ~playChords.asEventStreamPlayer;
-~flute = ~playFlute.asEventStreamPlayer;
+Pbindef(\bassPattern,\filterStart, 200);
+Pbindef(\organPattern,\filterStart, 200);
+Pbindef(\chordPattern,\chordsAmpl, 0);
+Pbindef(\flutePattern,\fluteAmpl, 0);
+Pbindef(\patternHHC,\verbMix, 0.1);
+/*~percussionBusNum=0;
+~bassBusNum=0;*/
 )
 
-// STEP 4: HANDLE INSTRUMENTS AS DESIRED
+// Start clock
+t = TempoClock(120/60).permanent_(true);
 
 (  // START INSTRUMENTS
-~hiHatC.play(t, quant:4); ~hiHatO.play(t, quant:8); ~bassDrum.play(t, quant:8);
-~verbMix.source = 0.1;
 ~bass.play(t, quant:8);
-~bassFilterEnvStart.source = 1; // start with attack part off
+~hiHatClosed.play(t, quant:4);
+~hiHatOpen.play(t, quant:4);
+~bassDrum.play(t, quant:4);
 ~organ.play(t, quant:8);
-~organFilterEnvStart.source = 1; // start with filter completely down
 ~chords.play(t, quant:8);
-~chordsAmpl.source = 0.0; // start with volume off
-~flute.play(t, quant:8);
-~fluteAmpl.source = 0.0; // start with volume off
+~synthFlute.play(t, quant:8);
 )
 
-// MODIFY INSTRUMENTS
-~bassFilterEnvStart.source = 2000;   // BASS - bring bass attack into mix
-~organFilterEnvStart.source = 10000; // ORGAN - bring rest of sound into mix
-~chordsAmpl.source = 0.1;            // CHORDS - bring full sound into mix
-~fluteAmpl.source = 0.1;             // FLUTE - bring full sound into mix
-~verbMix.source = Prand([0.1,0.2,0.3], inf);// HI HATS - add random reverb to closed HiHats
-
-// ENDING (not fully implemented yet)
-(
-t = Task({
-	forBy ( 0.1, 1, 0.1, { arg i;
-            ~verbMix.source = i;
-            1.wait;
-        });
-}).play;
-)
-
-
-
-
-
-
+// MODIFY INSTRUMENTS, as desired
+Pbindef(\bassPattern,\filterStart, 3000);    // attack part of BASS
+Pbindef(\organPattern,\filterStart, 10000);  // ORGAN volume (controlled by filter)
+Pbindef(\chordPattern,\chordsAmpl, 0.3);     // CHORDS volume
+Pbindef(\flutePattern,\fluteAmpl, 0.15);     // FLUTE volume
+Pbindef(\patternHHC,\verbMix, Prand([0.1,0.2,0.3], inf));// add random reverb to closed HiHats
