@@ -1,6 +1,7 @@
 ( // BASS
 
 ~bassBus=50;
+~bassBusFX=60; ~bassBusFXPlayer = {Out.ar(0, In.ar(~bassBusFX, 2))}.play;
 
 SynthDef.new( \bassSynth, {
 	arg amp=~masterAmplitude, dur=0, inputFreq=1, filterStart = 1;

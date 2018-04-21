@@ -1,6 +1,7 @@
 (  // SYNTH FLUTE
 
 ~synthFluteBus=54;
+~synthFluteBusFX=60; ~synthFluteBusFXPlayer = {Out.ar(0, In.ar(~synthFluteBusFX, 2))}.play;
 
 SynthDef(\synthFlute, { arg fluteAmpl=0, inputFreq = 0;
 	var envSize=0.2;

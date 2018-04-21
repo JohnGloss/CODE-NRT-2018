@@ -1,6 +1,7 @@
 (  // CHORDS
 
 ~chordsBus=53;
+~chordsBusFX=60; ~chordsBusFXPlayer = {Out.ar(0, In.ar(~chordsBusFX, 2))}.play;
 
 SynthDef.new(\chords, {
 	arg chordsAmpl=0, freq=440;

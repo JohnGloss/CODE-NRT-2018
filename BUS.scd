@@ -1,8 +1,5 @@
-(  // BUSES
+(  // BUS FX
 
-~fxBus1=60; ~fxBus1Player = {Out.ar(0, In.ar(~fxBus1, 2))}.play;
-
-// FX within Buses
 SynthDef(\sineModulator, { arg inBus = 0, outBus = 0, modFreq = 1, amp = 0;
 	var modulator = SinOsc.kr(freq:[modFreq-0.05, modFreq+0.5], mul:Line.kr(0,1,8));
 	var carrier = In.ar(inBus, 1);
@@ -167,8 +164,6 @@ SynthDef(\crossoverDist, { arg inBus = 0, outBus = 0, smooth = 0.01, amp = 0.01;
 ~crossoverDist.set(\amp, 0.1); // careful when exceed 0.2
 ~crossoverDist.set(\smooth, 0.1); // careful when exceed 0.15
 ~crossoverDist.free;
-
-~fxBus1Player.stop;
 
 // clear previous run
 ~panner=nil; ~tremelo=nil; ~triangleReverb=nil; ~wavyPanner=nil; ~sinePhaser=nil;

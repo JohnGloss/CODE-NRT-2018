@@ -1,6 +1,7 @@
 (  // ORGAN
 
 ~organBus=52;
+~organBusFX=60; ~organBusFXPlayer = {Out.ar(0, In.ar(~organBusFX, 2))}.play;
 
 SynthDef.new(\organ, {
 	arg amp=~masterAmplitude, inputFreq=440, filterStart=1;
