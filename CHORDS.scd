@@ -18,6 +18,8 @@ SynthDef.new(\chords, {
 	Splay.kr(Out.ar(0, verby), spread:1);
 }).add;
 
+Pbindef(\chordPattern,\chordsAmpl, 0);
+
 ~chords=Pbindef(\chordPattern,
 	\instrument, \chords,
 	\chordsAmpl, 0,

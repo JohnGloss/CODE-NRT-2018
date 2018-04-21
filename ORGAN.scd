@@ -24,6 +24,8 @@ SynthDef.new(\organ, {
 	Splay.kr(Out.ar(0, finalWave), spread:1);
 }).add;
 
+Pbindef(\organPattern,\filterStart, 200);
+
 ~organ=Pbindef(\organPattern,
 	\instrument, \organ,
 	\amp, Pseq(([10,8,4,4]/50), inf),

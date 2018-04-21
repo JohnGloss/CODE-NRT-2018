@@ -15,6 +15,8 @@ SynthDef(\synthFlute, { arg fluteAmpl=0, inputFreq = 0;
 	Splay.kr(Out.ar(0, finalWave), spread:1);
 }).add;
 
+Pbindef(\flutePattern,\fluteAmpl, 0);
+
 ~synthFlute=Pbindef(\flutePattern,
 	\instrument, \synthFlute,
 	\fluteAmpl, 0,

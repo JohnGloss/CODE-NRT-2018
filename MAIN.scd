@@ -1,24 +1,15 @@
 // MAIN CONTROLLER
 
 Execution steps:
-1.  Do Initialize System (below)
-2.  Eval all files except MAIN (this file)
-3.  In this file (MAIN), (a) Start the clock, (b) Start Instruments, (c) Modify Instruments
+1.  Eval all files except MAIN (this file)
+2.  In this file (MAIN), (a) Start the clock, (b) Start Instruments, (c) Modify Instruments
 -- if you need to stop the instruments, start the clock before starting the instruments
-
-(// INITIALIZE SYSTEM
-~masterAmplitude = 1;
-Pbindef(\bassPattern,\filterStart, 200);
-Pbindef(\organPattern,\filterStart, 200);
-Pbindef(\chordPattern,\chordsAmpl, 0);
-Pbindef(\flutePattern,\fluteAmpl, 0);
-Pbindef(\patternHHC,\verbMix, 0.1);
-)
 
 // Start clock
 t = TempoClock(120/60).permanent_(true);
 
 (  // START INSTRUMENTS
+~masterAmplitude = 1;
 ~bass.play(t, quant:8);
 ~hiHatClosed.play(t, quant:4);
 ~hiHatOpen.play(t, quant:4);

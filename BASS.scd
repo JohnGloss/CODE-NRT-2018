@@ -23,6 +23,8 @@ SynthDef.new( \bassSynth, {
 	Splay.kr(Out.ar(0, finalWave), spread:0.9);
 }).add;
 
+Pbindef(\bassPattern,\filterStart, 200);
+
 ~bass=Pbindef(\bassPattern,
 	\instrument,\bassSynth,
 	\dur,8,

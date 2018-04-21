@@ -20,6 +20,8 @@ SynthDef.new( \hiHatClosed, {
 	Out.ar(0, verby);
 }).add;
 
+Pbindef(\patternHHC,\verbMix, 0.1);
+
 ~hiHatClosed=Pbindef(\patternHHC,
 	\instrument, \hiHatClosed,
 	\buf, ~hiHatClosedBuffer,
