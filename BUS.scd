@@ -1,13 +1,10 @@
-(
-// define buses here
+(  // BUSES
+
+// init Buses
 ~fluteBus=50;
 ~fxBus1=60; ~fxBus1Player = {Out.ar(0, In.ar(~fxBus1, 2))}.play;
-// clear previous run
-~panner=nil; ~tremelo=nil; ~triangleReverb=nil; ~wavyPanner=nil; ~sinePhaser=nil;
-~noiseWave=nil; ~crossfadeMod=nil; ~simpleDelay=nil; ~phasingDelay=nil; ~combDelay=nil;
-~crossoverDist=nil;
-//------------------------------------------------------------------------
-// modify FX while live-coding
+
+// FX within Buses
 SynthDef(\sineModulator, { arg inBus = 0, outBus = 0, modFreq = 1, amp = 0;
 	var modulator = SinOsc.kr(freq:[modFreq-0.05, modFreq+0.5], mul:Line.kr(0,1,8));
 	var carrier = In.ar(inBus, 1);
@@ -121,8 +118,9 @@ SynthDef(\crossoverDist, { arg inBus = 0, outBus = 0, smooth = 0.01, amp = 0.01;
 		mul: Line.kr(0,0.01,8))}!2;
 	Splay.kr(Out.ar(outBus, signal), spread:1);
 }).add;
-
-)  // during performance, change amp to 0 before free to avoid clicks
+)
+// -----------------------------------------------------------------------------
+// FX TESTING - during performance, change amp to 0 before free to avoid clicks
 ~panner=Synth.new(\sineModulator, [inBus:~fluteBus, outBus:~fxBus1]);
 ~panner.set(\amp, 0.4);
 ~panner.set(\modFreq, 2);
@@ -172,23 +170,14 @@ SynthDef(\crossoverDist, { arg inBus = 0, outBus = 0, smooth = 0.01, amp = 0.01;
 ~crossoverDist.set(\smooth, 0.1); // careful when exceed 0.15
 ~crossoverDist.free;
 
-
 ~fxBus1Player.stop;
 
-SynthDef(\tester, { arg inBus = 0, outBus = 0, smooth = 0.01, amp = 0.01;
-	var carrier = In.ar(inBus, 1);
-	var signal = { CrossoverDistortion.ar(
-		in: carrier,
-		amp: amp,
-		smooth: smooth,
-		mul: Line.kr(0,0.01,8))}!2;
-	Splay.kr(Out.ar(outBus, signal), spread:1);
-}).add;
+// clear previous run
+~panner=nil; ~tremelo=nil; ~triangleReverb=nil; ~wavyPanner=nil; ~sinePhaser=nil;
+~noiseWave=nil; ~crossfadeMod=nil; ~simpleDelay=nil; ~phasingDelay=nil; ~combDelay=nil;
+~crossoverDist=nil;
 
-~tester=Synth.new(\tester, [inBus:~fluteBus, outBus:~fxBus1]);
-~tester.set(\amp, 0.3); // careful when exceed 0.2
-~tester.set(\smooth, 0.15); // careful when exceed 0.15
-~tester.free;
+
 
 
 
