@@ -1,4 +1,7 @@
 (  // ORGAN
+
+~organBus=52;
+
 SynthDef.new(\organ, {
 	arg amp=~masterAmplitude, inputFreq=440, filterStart=1;
 	var envSize=0.4;
@@ -21,6 +24,7 @@ SynthDef.new(\organ, {
 	var filteredWave1 = LPF.ar(sawWave, filterEnv);
 	var filteredWave2 = LPF.ar(sawWave2, filterEnv);
 	var finalWave = (filteredWave1*0.5) + (filteredWave2*0.5) * env * amp;
+	Out.ar(~organBus, finalWave);  // SEND TO ORGAN BUS
 	Splay.kr(Out.ar(0, finalWave), spread:1);
 }).add;
 

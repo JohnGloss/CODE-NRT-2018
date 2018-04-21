@@ -1,4 +1,7 @@
 ( // BASS
+
+~bassBus=50;
+
 SynthDef.new( \bassSynth, {
 	arg amp=~masterAmplitude, dur=0, inputFreq=1, filterStart = 1;
 	var env = EnvGen.ar(Env(
@@ -20,6 +23,7 @@ SynthDef.new( \bassSynth, {
 	var filteredWave1 = LPF.ar(squareWave, filterEnv);
 	var filteredWave2 = LPF.ar(squareWave2, filterEnv, mul: LFPar.kr(freq:1,iphase:0));
 	var finalWave = (filteredWave1*0.7) + (filteredWave2*0.3) * env * amp;
+	Out.ar(~bassBus, finalWave);  // SEND TO BASS BUS
 	Splay.kr(Out.ar(0, finalWave), spread:0.9);
 }).add;
 

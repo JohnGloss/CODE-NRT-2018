@@ -1,4 +1,7 @@
 (  // SYNTH FLUTE
+
+~synthFluteBus=54;
+
 SynthDef(\synthFlute, { arg fluteAmpl=0, inputFreq = 0;
 	var envSize=0.2;
 	var env = EnvGen.ar(Env(
@@ -12,6 +15,7 @@ SynthDef(\synthFlute, { arg fluteAmpl=0, inputFreq = 0;
 	var filterEnv = XLine.kr(3000,200,envSize);
 	var filteredWave1 = LPF.ar(wave1, filterEnv);
 	var finalWave = filteredWave1 * env * 0.4;
+	Out.ar(~synthFluteBus, finalWave);  // SEND TO SYNTH-FLUTE BUS
 	Splay.kr(Out.ar(0, finalWave), spread:1);
 }).add;
 

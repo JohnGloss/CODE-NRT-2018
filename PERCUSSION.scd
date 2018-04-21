@@ -1,5 +1,7 @@
 ( // PERCUSSION
 
+~percussionBus=51;
+
 // load buffers (change pathway if necessary)
 ~audioSources = Array.new(50);
 ~folder = PathName.new("C:/Users/johngoestouni/Desktop/SuperCollider/MY PROJECT CODE/CODE-NRT-2018/AUDIO SOURCE FILES");
@@ -17,6 +19,7 @@ SynthDef.new( \hiHatClosed, {
 	var env = EnvGen.ar(Env.perc, doneAction:2);
 	var sig = PlayBuf.ar(2, buf) * env * amp;
 	var verby = FreeVerb2.ar(sig[0], sig[1], mix:verbMix, room:verbRoom, damp:1);
+	Out.ar(~percussionBus, sig);  // SEND TO PERCUSSION BUS
 	Out.ar(0, verby);
 }).add;
 
@@ -36,6 +39,7 @@ SynthDef.new( \hiHatOpen, {
 	var env = EnvGen.ar(Env([1,0],[0.25]), doneAction:2);
 	var sig = PlayBuf.ar(2, buf) * env * amp;
 	var verby = FreeVerb2.ar(sig[0], sig[1], mix:verbMix, room:verbRoom, damp:1);
+	Out.ar(~percussionBus, sig);  // SEND TO PERCUSSION BUS
 	Out.ar(0, verby);
 }).add;
 
@@ -51,6 +55,7 @@ SynthDef.new( \bassDrum, {
 	var env = EnvGen.ar(Env([2,0],[1]), doneAction:2);
 	var sig = PlayBuf.ar(2, buf) * env * amp;
 	var verby = FreeVerb2.ar(sig[0], sig[1], mix:verbMix, room:verbRoom, damp:1);
+	Out.ar(~percussionBus, sig);  // SEND TO PERCUSSION BUS
 	Out.ar(0, verby);
 }).add;
 

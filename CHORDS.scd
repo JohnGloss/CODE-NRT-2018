@@ -1,4 +1,7 @@
 (  // CHORDS
+
+~chordsBus=53;
+
 SynthDef.new(\chords, {
 	arg chordsAmpl=0, freq=440;
 	var envSize=4;
@@ -15,6 +18,7 @@ SynthDef.new(\chords, {
 	var filterEnv = XLine.kr(3000,200,envSize);
 	var filteredWave1 = LPF.ar(wave1, filterEnv) * env * 0.1;
 	var verby = FreeVerb.ar(filteredWave1, mix:0.5, room:0.4, damp:1)!2;
+	Out.ar(~chordsBus, filteredWave1);  // SEND TO CHORDS BUS
 	Splay.kr(Out.ar(0, verby), spread:1);
 }).add;
 
