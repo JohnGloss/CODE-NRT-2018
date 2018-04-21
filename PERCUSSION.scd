@@ -1,7 +1,7 @@
 ( // PERCUSSION
 
 ~percussionBus=51;
-~percussionBusFX=60; ~percussionBusFXPlayer = {Out.ar(0, In.ar(~percussionBusFX, 2))}.play;
+~percussionBusFX=61; ~percussionBusFXPlayer = {Out.ar(0, In.ar(~percussionBusFX, 2))}.play;
 
 // load buffers (change pathway if necessary)
 ~audioSources = Array.new(50);

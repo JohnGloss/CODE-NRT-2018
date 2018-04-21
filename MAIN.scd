@@ -28,6 +28,6 @@ Pbindef(\patternHHC,\verbMix, Prand([0.1,0.2,0.3], inf));// add random reverb to
 
 // MODIFY FX, as desired
 ~panner=Synth.new(\sineModulator, [inBus:~organBus, outBus:~organBusFX]);
-~panner.set(\amp, 1);
-~panner.set(\modFreq, 333);
+~panner.set(\amp, 0.2);
+~panner.set(\modFreq, 3);
 ~panner.free;
