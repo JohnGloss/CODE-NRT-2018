@@ -1,4 +1,4 @@
-// PERCUSSION
+( // PERCUSSION
 
 // load buffers (change pathway if necessary)
 ~audioSources = Array.new(50);

@@ -1,5 +1,4 @@
-// SYNTH FLUTE
-(
+(  // SYNTH FLUTE
 SynthDef(\synthFlute, { arg fluteAmpl=0, inputFreq = 0;
 	var envSize=0.2;
 	var env = EnvGen.ar(Env(

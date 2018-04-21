@@ -1,5 +1,4 @@
-// BASS
-(
+( // BASS
 SynthDef.new( \bassSynth, {
 	arg amp=~masterAmplitude, dur=0, inputFreq=1, filterStart = 1;
 	var env = EnvGen.ar(Env(

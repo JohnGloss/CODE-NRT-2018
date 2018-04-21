@@ -1,5 +1,4 @@
-// ORGAN
-(
+(  // ORGAN
 SynthDef.new(\organ, {
 	arg amp=~masterAmplitude, inputFreq=440, filterStart=1;
 	var envSize=0.4;

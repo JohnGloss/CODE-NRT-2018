@@ -1,5 +1,4 @@
-// CHORDS
-(
+(  // CHORDS
 SynthDef.new(\chords, {
 	arg chordsAmpl=0, freq=440;
 	var envSize=4;
