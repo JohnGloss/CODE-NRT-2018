@@ -31,3 +31,9 @@ Pbindef(\patternHHC,\verbMix, Prand([0.1,0.2,0.3], inf));// add random reverb to
 ~panner.set(\amp, 0.2);
 ~panner.set(\modFreq, 3);
 ~panner.free;
+
+
+
+// HISTORY LOG
+History.clear.end; History.start; // starts recording
+History.end; History.document;    // ends recording
