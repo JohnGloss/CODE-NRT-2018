@@ -13,8 +13,6 @@ Pbindef(\organPattern,\filterStart, 200);
 Pbindef(\chordPattern,\chordsAmpl, 0);
 Pbindef(\flutePattern,\fluteAmpl, 0);
 Pbindef(\patternHHC,\verbMix, 0.1);
-/*~percussionBusNum=0;
-~bassBusNum=0;*/
 )
 
 // Start clock
